@@ -1,7 +1,7 @@
 import { GameDisplay } from "./game-display";
 
 export default async function Page() {
-  const res = await fetch("http://localhost:3000/api/game-list");
+  const res = await fetch(`http://${process.env.VERCEL_URL}/api/game-list`);
 
   if (res.status !== 200) {
     return (
