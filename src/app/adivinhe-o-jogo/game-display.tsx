@@ -1,15 +1,28 @@
 "use client";
 
+import { getBaseUrl } from "@/lib/utils";
 import { useCallback, useEffect, useState } from "react";
 
-export function GameDisplay({ gamesList }: { gamesList: string[] }) {
+export function GameDisplay() {
+  const [games, setGames] = useState<string[]>([]);
   const [game, setGame] = useState("");
 
   const refreshGame = useCallback(() => {
-    setGame(gamesList[Math.floor(Math.random() * gamesList.length)]);
-  }, [gamesList]);
+    setGame(games[Math.floor(Math.random() * games.length)]);
+  }, [games]);
 
   useEffect(() => {
+    async function getGameList() {
+      const res = await fetch(`${getBaseUrl()}/api/game-list`);
+
+      if (res.status !== 200) {
+        console.log("Invalid status code");
+      }
+
+      setGames((await res.json()) as string[]);
+    }
+
+    getGameList();
     refreshGame();
 
     document.addEventListener("keydown", (e) => {
