@@ -30,7 +30,8 @@ export function GameDisplay() {
         refreshGame();
       }
     });
-  }, [refreshGame]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
