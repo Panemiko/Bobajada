@@ -25,5 +25,5 @@ export async function GET() {
     })) as string;
   }
 
-  return NextResponse.json(redisGameList);
+  return NextResponse.json(redisGameList, { status: 200 });
 }
