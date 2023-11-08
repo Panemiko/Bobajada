@@ -23,6 +23,9 @@ export function GameDisplay() {
     }
 
     getGameList();
+  }, []);
+
+  useEffect(() => {
     refreshGame();
 
     document.addEventListener("keydown", (e) => {
@@ -30,8 +33,7 @@ export function GameDisplay() {
         refreshGame();
       }
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [refreshGame]);
 
   return (
     <>
