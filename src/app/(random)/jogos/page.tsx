@@ -15,6 +15,7 @@ export default async function Page() {
         buttonClassName="text-purple-50 bg-purple-700 border-purple-800 hover:bg-purple-800 hover:border-purple-900 active:bg-purple-800"
         itemClassName="text-purple-50"
         apiPath="/api/game-list"
+        searchButtonClassName="text-purple-300 hover:bg-purple-800 active:bg-purple-800 hover:text-purple-50 active:text-purple-50"
       />
     </div>
   );
