@@ -1,8 +1,11 @@
 import { NextResponse } from "next/server";
 
+export const revalidate = 86400; // 24 hours
+
 export async function GET() {
   const res = await fetch("https://www.gamedle.wtf/newtokenizedversion", {
     method: "POST",
+    body: JSON.stringify([]),
     headers: {
       "Content-Type": "application/json",
       Connection: "keep-alive",
@@ -11,10 +14,10 @@ export async function GET() {
   });
 
   if (res.status !== 200) {
-    return new Response(undefined, { status: 500 });
+    return new Response("Failed to fetch game list", { status: 500 });
   }
 
-  const games = (await res.json()).gameList as {
+  const games = (await res.json()).gamelist as {
     label: string;
   }[];
 
