@@ -1,9 +1,12 @@
+import { inter } from "@/lib/fonts";
 import type { Metadata } from "next";
 import "./globals.css";
-import { inter } from "@/lib/fonts";
 
 export const metadata: Metadata = {
-  title: "Bobajada",
+  title: {
+    default: "Bobajada",
+    template: "%s | Bobajada",
+  },
   description: "Minigames pro meio da aula",
 };
 
