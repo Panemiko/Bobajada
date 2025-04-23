@@ -1,4 +1,4 @@
-import { JoystickIcon, Wallet2Icon } from "lucide-react";
+import { JoystickIcon, ThumbsDownIcon, Wallet2Icon } from "lucide-react";
 import Link from "next/link";
 
 export default function Page() {
@@ -20,6 +20,12 @@ export default function Page() {
           className="text-blue-50 text-2xl font-bold flex h-fit justify-between gap-2 items-center bg-blue-700 w-full px-8 rounded-lg border border-blue-300 py-4 hover:bg-blue-800 transition-colors"
         >
           Profissões <Wallet2Icon className="text-blue-400" />
+        </Link>
+        <Link
+          href="/animes"
+          className="text-red-50 text-2xl font-bold flex h-fit justify-between gap-2 items-center bg-red-700 w-full px-8 rounded-lg border border-red-300 py-4 hover:bg-red-800 transition-colors"
+        >
+          Animes <ThumbsDownIcon className="text-red-400" />
         </Link>
       </div>
     </div>

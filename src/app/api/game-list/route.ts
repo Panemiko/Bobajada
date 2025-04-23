@@ -21,7 +21,7 @@ export async function GET() {
     label: string;
   }[];
 
-  const mappedGames = games.map((game) => game.label);
+  const mappedGames = games.map((game) => ({ name: game.label }));
 
   return NextResponse.json(mappedGames, { status: 200 });
 }

@@ -4,19 +4,26 @@ import { cn, getBaseUrl } from "@/lib/utils";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 
+interface Item {
+  name: string;
+  code?: string;
+}
+
 export function Randomizer({
   apiPath,
   buttonClassName,
   itemClassName,
   searchButtonClassName,
+  searchEngine,
 }: {
   apiPath: string;
   buttonClassName?: string;
   itemClassName?: string;
   searchButtonClassName?: string;
+  searchEngine?: "google" | "mal";
 }) {
-  const [items, setItems] = useState<string[]>([]);
-  const [item, setItem] = useState("");
+  const [items, setItems] = useState<Item[]>([{ name: "" }]);
+  const [item, setItem] = useState<Item>({ name: "" });
 
   const refreshItem = useCallback(() => {
     setItem(items[Math.floor(Math.random() * items.length)]);
@@ -30,7 +37,7 @@ export function Randomizer({
         console.log("Invalid status code");
       }
 
-      setItems((await res.json()) as string[]);
+      setItems((await res.json()) as Item[]);
     }
 
     getItemList();
@@ -54,7 +61,7 @@ export function Randomizer({
           itemClassName
         )}
       >
-        {item}
+        {item.name}
       </span>
       <div className="flex gap-4 flex-col lg:flex-row">
         <button
@@ -67,7 +74,11 @@ export function Randomizer({
           PRÓXIMO
         </button>
         <Link
-          href={`https://google.com/search?q=${item}`}
+          href={
+            searchEngine === "mal"
+              ? `https://myanimelist.net/anime/${item.code}`
+              : `https://www.google.com/search?q=${item.name}`
+          }
           target="_blank"
           rel="noopener noreferrer"
           className={cn(
